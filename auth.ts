@@ -1,162 +1,82 @@
-"use server";
-
+import { cache } from "react";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
-import { createAdminClient, hasServiceKey } from "@/lib/supabase/admin";
-import { getOrigin } from "@/lib/origin";
-import { getSession, isStaffRole } from "@/lib/auth";
-import type { ActionResult } from "@/lib/types";
+import type { ClientRow, PropertyRow, Role, SettingsRow, UserRow } from "@/lib/types";
 
-function str(fd: FormData, key: string) {
-  return String(fd.get(key) ?? "").trim();
-}
+export const STAFF_ROLES: Role[] = ["super_admin", "intendant", "assistant"];
 
-function translateAuthError(message: string) {
-  const m = message.toLowerCase();
-  if (m.includes("invalid login credentials")) return "Email ou mot de passe incorrect.";
-  if (m.includes("email not confirmed")) return "Merci de confirmer votre adresse email (regardez votre boîte de réception).";
-  if (m.includes("already registered") || m.includes("already been registered")) return "Un compte existe déjà avec cette adresse.";
-  if (m.includes("password should be at least")) return "Le mot de passe doit contenir au moins 8 caractères.";
-  if (m.includes("rate limit")) return "Trop de tentatives. Merci de patienter quelques minutes.";
-  if (m.includes("invalid email") || m.includes("unable to validate email")) return "Adresse email invalide.";
-  return message;
-}
-
-export async function signIn(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const email = str(formData, "email").toLowerCase();
-  const password = str(formData, "password");
-  const next = str(formData, "next");
-  if (!email || !password) return { error: "Merci de saisir votre email et votre mot de passe." };
-
+export const getSession = cache(async () => {
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) return { error: translateAuthError(error.message) };
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { supabase, user: null, profile: null };
+  const { data: profile } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", user.id)
+    .maybeSingle<UserRow>();
+  return { supabase, user, profile: profile ?? null };
+});
 
-  const { profile } = await getSession();
-  const safeNext = next.startsWith("/") && !next.startsWith("//") ? next : null;
-  redirect(safeNext ?? (isStaffRole(profile?.role) ? "/admin" : "/client"));
+export const getSettings = cache(async () => {
+  const supabase = await createClient();
+  const { data } = await supabase.from("settings").select("*").maybeSingle<SettingsRow>();
+  return (
+    data ?? {
+      id: true,
+      company_name: "Auxois Intendance",
+      tagline: "Votre maison, suivie toute l’année.",
+      phone: null,
+      email: null,
+      address: null,
+      logo_path: null,
+      privacy_policy_version: "2026-10",
+    }
+  );
+});
+
+export async function requireUser() {
+  const session = await getSession();
+  if (!session.user || !session.profile) redirect("/connexion");
+  return { supabase: session.supabase, user: session.user, profile: session.profile };
 }
 
-export async function signUp(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const fullName = str(formData, "full_name");
-  const email = str(formData, "email").toLowerCase();
-  const password = str(formData, "password");
-  const consent = formData.get("consent") === "on";
-  if (!fullName) return { error: "Merci d’indiquer votre nom." };
-  if (!email || !password) return { error: "Merci de saisir un email et un mot de passe." };
-  if (password.length < 8) return { error: "Le mot de passe doit contenir au moins 8 caractères." };
-  if (!consent) return { error: "Merci d’accepter la politique de confidentialité." };
+export async function requireStaff() {
+  const s = await requireUser();
+  if (!STAFF_ROLES.includes(s.profile.role) || !s.profile.is_active) redirect("/client");
+  return s;
+}
 
-  const supabase = await createClient();
-  const origin = await getOrigin();
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: { data: { full_name: fullName }, emailRedirectTo: `${origin}/auth/callback` },
-  });
-  if (error) return { error: translateAuthError(error.message) };
+export async function requireSuperAdmin() {
+  const s = await requireStaff();
+  if (s.profile.role !== "super_admin") redirect("/admin");
+  return s;
+}
 
-  if (data.session) {
-    await recordConsent();
-    redirect("/");
+export function isStaffRole(role: Role | null | undefined) {
+  return !!role && STAFF_ROLES.includes(role);
+}
+
+/** Espace propriétaire : fiche client liée + propriétés. */
+export const requireClient = cache(async () => {
+  const s = await requireUser();
+  if (STAFF_ROLES.includes(s.profile.role)) redirect("/admin");
+  const { data: client } = await s.supabase
+    .from("clients")
+    .select("*")
+    .eq("user_id", s.user.id)
+    .maybeSingle<ClientRow>();
+  let properties: PropertyRow[] = [];
+  if (client) {
+    const { data: owned } = await s.supabase
+      .from("property_owners")
+      .select("property_id, is_primary, properties(*)")
+      .eq("client_id", client.id);
+    properties = (owned ?? [])
+      .map((o) => o.properties as unknown as PropertyRow)
+      .filter((p): p is PropertyRow => Boolean(p))
+      .sort((a, b) => a.name.localeCompare(b.name, "fr"));
   }
-  return {
-    ok: true,
-    message: "Votre compte est créé. Vérifiez votre boîte email pour confirmer votre adresse, puis connectez-vous.",
-  };
-}
-
-export async function recordConsent() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return;
-  const { data: settings } = await supabase.from("settings").select("privacy_policy_version").maybeSingle();
-  await supabase
-    .from("consents")
-    .upsert({ user_id: user.id, policy_version: settings?.privacy_policy_version ?? "2026-10" }, { onConflict: "user_id,policy_version", ignoreDuplicates: true });
-}
-
-export async function acceptPolicy(): Promise<ActionResult> {
-  await recordConsent();
-  revalidatePath("/client");
-  return { ok: true };
-}
-
-export async function signOut() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
-  redirect("/connexion");
-}
-
-export async function forgotPassword(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const email = str(formData, "email").toLowerCase();
-  if (!email) return { error: "Merci de saisir votre adresse email." };
-  const supabase = await createClient();
-  const origin = await getOrigin();
-  const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${origin}/auth/callback?next=/reinitialiser-mot-de-passe`,
-  });
-  if (error) return { error: translateAuthError(error.message) };
-  return { ok: true, message: "Si un compte existe avec cette adresse, un email vient de vous être envoyé." };
-}
-
-export async function updatePassword(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const password = str(formData, "password");
-  const confirm = str(formData, "confirm");
-  if (password.length < 8) return { error: "Le mot de passe doit contenir au moins 8 caractères." };
-  if (password !== confirm) return { error: "Les deux mots de passe ne sont pas identiques." };
-  const supabase = await createClient();
-  const { error } = await supabase.auth.updateUser({ password });
-  if (error) return { error: translateAuthError(error.message) };
-  return { ok: true, message: "Votre mot de passe a été mis à jour." };
-}
-
-export async function updateProfile(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return { error: "Non connecté." };
-  const full_name = str(formData, "full_name");
-  const phone = str(formData, "phone") || null;
-  const language = str(formData, "language") || "fr";
-  const { error } = await supabase.from("users").update({ full_name, phone, language }).eq("id", user.id);
-  if (error) return { error: error.message };
-  // Synchronise la fiche client si elle existe
-  await supabase.from("clients").update({ phone }).eq("user_id", user.id);
-  revalidatePath("/", "layout");
-  return { ok: true, message: "Profil enregistré." };
-}
-
-/** Assistant d’installation : étape 1, création du premier compte (super_admin). */
-export async function installFirstAdmin(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  if (!hasServiceKey()) return { error: "La clé de service Supabase (SUPABASE_SERVICE_ROLE_KEY) n’est pas configurée." };
-  const secret = process.env.SETUP_SECRET;
-  if (secret && str(formData, "setup_secret") !== secret) return { error: "Code d’installation incorrect." };
-
-  const admin = createAdminClient();
-  const { count } = await admin.from("users").select("id", { count: "exact", head: true }).eq("role", "super_admin");
-  if ((count ?? 0) > 0) return { error: "Un administrateur existe déjà. Connectez-vous." };
-
-  const fullName = str(formData, "full_name");
-  const email = str(formData, "email").toLowerCase();
-  const password = str(formData, "password");
-  if (!fullName || !email || password.length < 8) return { error: "Merci de remplir tous les champs (mot de passe : 8 caractères minimum)." };
-
-  const { error } = await admin.auth.admin.createUser({
-    email,
-    password,
-    email_confirm: true,
-    user_metadata: { full_name: fullName },
-  });
-  if (error) return { error: translateAuthError(error.message) };
-
-  const supabase = await createClient();
-  const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-  if (signInError) return { error: translateAuthError(signInError.message) };
-  await recordConsent();
-  redirect("/installation?etape=2");
-}
+  return { ...s, client, properties };
+});
