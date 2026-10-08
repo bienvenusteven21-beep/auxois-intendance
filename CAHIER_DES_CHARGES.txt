@@ -1,0 +1,1093 @@
+Je veux créer une application web/mobile premium appelée :
+
+AUXOIS INTENDANCE
+Sous-titre : « Votre maison, suivie toute l’année. »
+
+CONTEXTE
+
+Auxois Intendance est une société d’intendance de résidences secondaires et de propriétés basée à Semur-en-Auxois.
+
+Le service s’adresse principalement à des propriétaires qui ne vivent pas toute l’année dans leur maison.
+
+L’entreprise possède les clés de certaines propriétés avec l’autorisation du propriétaire, effectue des visites régulières, vérifie l’état général de la maison, documente les contrôles, signale les anomalies, organise éventuellement des interventions et prépare les propriétés avant l’arrivée des propriétaires.
+
+L’application doit être au cœur du service.
+
+Elle doit avoir DEUX ESPACES COMPLÈTEMENT DISTINCTS :
+
+1. ESPACE ADMINISTRATEUR / INTENDANT
+2. ESPACE CLIENT / PROPRIÉTAIRE
+
+L’application doit être pensée mobile-first, utilisable parfaitement sur smartphone, mais également sur ordinateur et tablette.
+
+Créer idéalement une PWA installable sur smartphone.
+
+==================================================
+1. IDENTITÉ VISUELLE
+==================================================
+
+Créer une interface premium, rassurante et élégante.
+
+Univers :
+- Bourgogne
+- propriété
+- confiance
+- haut de gamme discret
+- moderne
+- humain
+- technologie simple
+
+Palette :
+- vert forêt foncé
+- beige / pierre / crème
+- petites touches bronze ou doré mat
+- blanc
+- gris anthracite
+
+Ne pas créer une interface ressemblant :
+- à une application de ménage
+- à Airbnb
+- à une application de sécurité
+- à un logiciel industriel froid
+
+Style :
+élégant, très lisible, minimaliste, moderne, chaleureux.
+
+Le dashboard client doit immédiatement transmettre une sensation de tranquillité.
+
+En haut de son écran, le client doit pouvoir voir par exemple :
+
+🟢 Votre maison va bien.
+
+ou
+
+🟠 Une observation nécessite votre attention.
+
+ou
+
+🔴 Une intervention urgente est en cours.
+
+==================================================
+2. TYPES D’UTILISATEURS
+==================================================
+
+Créer deux rôles principaux.
+
+A. ADMINISTRATEUR / INTENDANT
+
+L’administrateur peut :
+- créer des clients
+- créer des propriétés
+- associer une propriété à un client
+- gérer les abonnements
+- organiser les visites
+- effectuer les checklists
+- ajouter des photos
+- créer des observations
+- créer des interventions
+- gérer les artisans
+- gérer les demandes clients
+- consulter tout l’historique
+- modifier les modèles de checklist
+- envoyer des notifications
+- déposer des documents
+- consulter les statistiques
+
+Prévoir l’architecture pour pouvoir ajouter plus tard plusieurs employés/intendants avec des permissions différentes.
+
+B. CLIENT / PROPRIÉTAIRE
+
+Un client ne doit voir QUE :
+- ses propres propriétés
+- ses propres visites
+- ses propres photos
+- ses propres incidents
+- ses propres interventions
+- ses propres documents
+- ses propres factures ou devis si cette fonction est activée
+
+Aucune donnée d’un autre client ne doit être accessible.
+
+==================================================
+3. DASHBOARD ADMINISTRATEUR
+==================================================
+
+Créer un dashboard administrateur très opérationnel.
+
+Afficher :
+
+- nombre de propriétés actives
+- visites prévues aujourd’hui
+- visites prévues cette semaine
+- interventions en cours
+- anomalies non résolues
+- demandes clients en attente
+- prochains séjours clients
+- alertes urgentes
+
+Afficher une liste :
+
+VISITES DU JOUR
+
+Exemple :
+
+09h00
+Maison Martin
+Semur-en-Auxois
+Formule Sérénité
+[Bouton : Démarrer la visite]
+
+11h00
+Maison Dupont
+Époisses
+Formule Signature
+[Bouton : Démarrer la visite]
+
+Pouvoir afficher les visites :
+- en liste
+- dans un calendrier
+
+==================================================
+4. FICHE CLIENT ADMINISTRATEUR
+==================================================
+
+Chaque client doit avoir une fiche contenant :
+
+- prénom
+- nom
+- téléphone
+- email
+- adresse principale
+- langue préférée
+- notes internes
+- date de création
+- formule d’abonnement
+- statut actif / inactif
+
+Afficher les propriétés associées au client.
+
+Prévoir éventuellement plusieurs propriétaires pour une même maison :
+exemple couple / famille.
+
+==================================================
+5. FICHE PROPRIÉTÉ
+==================================================
+
+Chaque propriété doit posséder une fiche complète.
+
+Informations :
+
+- nom de la propriété
+  Exemple : « Maison de Semur »
+
+- propriétaire(s)
+- adresse
+- commune
+- formule d’abonnement
+- fréquence de visite
+- prochaine visite
+- dernière visite
+- statut général
+
+STATUT :
+🟢 Bon
+🟠 Vigilance
+🔴 Urgent
+
+Créer un « Carnet Maison ».
+
+Le Carnet Maison doit pouvoir contenir :
+
+- type de chauffage
+- chaudière
+- compteur électrique
+- compteur d’eau
+- vanne d’eau
+- localisation tableau électrique
+- internet
+- équipements particuliers
+- dépendances
+- piscine
+- portail
+- jardin
+- artisans habituels
+- assureur
+- contacts utiles
+- notes particulières
+
+Prévoir un espace sécurisé administrateur uniquement pour les informations très sensibles.
+
+Ne jamais afficher les informations sensibles à des utilisateurs non autorisés.
+
+==================================================
+6. CHECKLIST DE VISITE CÔTÉ INTENDANT
+==================================================
+
+C’est une des fonctions les plus importantes de l’application.
+
+Quand l’administrateur arrive dans une maison :
+
+bouton :
+
+DÉMARRER LA VISITE
+
+Enregistrer automatiquement :
+- date
+- heure
+- intendant
+- propriété
+
+Ensuite afficher la checklist.
+
+Exemple :
+
+ACCÈS
+☐ Portail
+☐ Porte principale
+☐ Fenêtres
+☐ Traces d’effraction visibles
+
+EAU
+☐ Fuite visible
+☐ Sanitaires
+☐ Robinetterie
+☐ Chauffe-eau
+
+CHAUFFAGE
+☐ Chauffage fonctionne
+☐ Température intérieure
+Champ :
+Température : ___ °C
+
+ÉLECTRICITÉ
+☐ Électricité OK
+☐ Tableau électrique
+☐ Coupure visible
+
+HUMIDITÉ
+☐ Odeur inhabituelle
+☐ Traces d’humidité
+☐ Moisissure visible
+
+CUISINE
+☐ Réfrigérateur
+☐ Congélateur
+☐ Électroménager visible
+
+EXTÉRIEURS
+☐ Jardin
+☐ Terrasse
+☐ Toiture : contrôle visuel uniquement
+☐ Portail
+☐ Dépendances
+
+COURRIER
+☐ Aucun courrier
+☐ Courrier récupéré
+
+Champ :
+Nombre de courriers : ___
+
+Prévoir la possibilité pour l’administrateur de personnaliser les checklists par propriété.
+
+Exemple :
+une maison avec piscine doit avoir une catégorie piscine.
+
+==================================================
+7. PHOTOS DE VISITE
+==================================================
+
+Pendant la visite, permettre à l’intendant de prendre directement des photos depuis son téléphone.
+
+Chaque photo doit être liée :
+- à la propriété
+- à la visite
+- à la date
+- à une catégorie éventuelle
+
+Exemple :
+Cuisine
+Extérieur
+Chaudière
+Anomalie
+
+Les photos doivent être visibles ensuite par le client si elles sont marquées comme partageables.
+
+Prévoir aussi :
+PHOTO INTERNE ADMIN UNIQUEMENT
+
+==================================================
+8. OBSERVATIONS / PROBLÈMES
+==================================================
+
+Pendant la checklist, l’intendant doit pouvoir créer une observation.
+
+Niveaux :
+
+🔵 INFORMATION
+
+Exemple :
+« Courrier récupéré. »
+
+🟡 À SURVEILLER
+
+Exemple :
+« Humidité légèrement élevée dans la cave. »
+
+🟠 INTERVENTION RECOMMANDÉE
+
+Exemple :
+« La chasse d’eau fuit légèrement. »
+
+🔴 URGENT
+
+Exemple :
+« Fuite importante détectée sous l’évier. »
+
+Pour chaque observation :
+
+- titre
+- description
+- niveau
+- photos
+- date
+- action recommandée
+- statut
+
+Statuts possibles :
+
+- Nouveau
+- En attente client
+- Autorisé
+- Artisan contacté
+- Rendez-vous prévu
+- Intervention en cours
+- Résolu
+- Classé sans suite
+
+==================================================
+9. FIN DE VISITE
+==================================================
+
+À la fin :
+
+bouton très visible :
+
+TERMINER LA VISITE
+
+Avant validation, afficher un résumé :
+
+12 points contrôlés
+10 OK
+1 observation
+1 intervention recommandée
+8 photos
+
+L’intendant peut écrire :
+
+COMMENTAIRE DE L’INTENDANT
+
+Exemple :
+
+« Maison globalement en très bon état.
+Petite fuite constatée sur la chasse d’eau des WC de l’étage.
+Je recommande de faire intervenir le plombier. »
+
+Puis bouton :
+
+ENVOYER LE DÉBRIEF AU PROPRIÉTAIRE
+
+==================================================
+10. NOTIFICATION CLIENT
+==================================================
+
+Dès que la visite est terminée, envoyer automatiquement :
+
+notification push
+
+et éventuellement email.
+
+Exemple :
+
+🔑 AUXOIS INTENDANCE
+
+Auxois Intendance est passé chez vous.
+
+Votre propriété a été contrôlée aujourd’hui à 10h42.
+
+État général :
+🟢 BON
+
+1 observation a été signalée.
+
+[Bouton : Voir le débrief]
+
+==================================================
+11. DASHBOARD CLIENT
+==================================================
+
+Le dashboard client doit être extrêmement simple.
+
+En haut :
+
+MA MAISON
+
+Nom :
+Maison de Semur
+
+Statut :
+
+🟢 Votre maison va bien.
+
+Dernière visite :
+8 octobre 2026 - 10h42
+
+Prochaine visite :
+8 novembre 2026
+
+Afficher ensuite :
+
+DERNIER DÉBRIEF
+
+INTERVENTIONS EN COURS
+
+PROCHAINES INTERVENTIONS
+
+DERNIÈRES PHOTOS
+
+MES DEMANDES
+
+MES DOCUMENTS
+
+==================================================
+12. HISTORIQUE DE LA MAISON
+==================================================
+
+Créer une timeline.
+
+Exemple :
+
+8 octobre
+✅ Visite mensuelle terminée
+
+28 septembre
+🔧 Intervention plombier terminée
+
+15 septembre
+🏠 Maison préparée avant arrivée
+
+2 septembre
+✅ Visite mensuelle
+
+12 août
+⚠️ Humidité cave - surveillance
+
+Créer ainsi un véritable :
+
+CARNET DE SANTÉ NUMÉRIQUE DE LA MAISON
+
+Le client doit pouvoir consulter plusieurs années d’historique.
+
+==================================================
+13. VALIDATION DES INTERVENTIONS
+==================================================
+
+Lorsqu’un problème nécessite un artisan :
+
+le client reçoit :
+
+INTERVENTION RECOMMANDÉE
+
+Petite fuite détectée dans les WC de l’étage.
+
+Auxois Intendance recommande l’intervention d’un plombier.
+
+Afficher éventuellement :
+
+Coût estimatif :
+80 à 150 €
+
+Boutons :
+
+[Autoriser Auxois Intendance à organiser l’intervention]
+
+[Me contacter avant]
+
+[Je m’en occupe moi-même]
+
+Si le client autorise :
+
+l’administrateur reçoit immédiatement la validation.
+
+Créer alors une intervention.
+
+==================================================
+14. GESTION DES INTERVENTIONS
+==================================================
+
+Côté administrateur :
+
+INTERVENTION
+
+Propriété :
+Maison Martin
+
+Problème :
+Fuite WC étage
+
+Artisan :
+Dupont Plomberie
+
+Date prévue :
+12 octobre - 14h
+
+Statut :
+Rendez-vous confirmé
+
+Photos avant
+
+Photos après
+
+Compte rendu
+
+Facture / document
+
+Une fois terminée :
+
+le client reçoit :
+
+✅ Intervention terminée
+
+« Le problème constaté le 8 octobre a été résolu. »
+
+==================================================
+15. FONCTION « JE VIENS DANS MA MAISON »
+==================================================
+
+Dans l’espace client, créer un gros bouton :
+
+🏠 JE VIENS DANS MA MAISON
+
+Le client indique :
+
+Date d’arrivée
+Heure approximative
+Date de départ
+
+Puis coche des options :
+
+☐ Préparer la maison
+☐ Ouvrir les volets
+☐ Chauffer la maison
+☐ Faire les lits
+☐ Ménage avant arrivée
+☐ Préparer du bois
+☐ Faire quelques courses
+☐ Remplir le réfrigérateur
+☐ Vérifier le jardin
+☐ Autre demande
+
+Champ libre :
+
+« Message pour Auxois Intendance »
+
+Bouton :
+
+ENVOYER MA DEMANDE
+
+La demande doit apparaître automatiquement dans le dashboard administrateur.
+
+==================================================
+16. DEMANDES CLIENT
+==================================================
+
+Le client doit pouvoir créer une demande à tout moment :
+
+Exemples :
+
+« Pouvez-vous ouvrir à mon plombier mardi ? »
+
+« Pouvez-vous vérifier si j’ai laissé une fenêtre ouverte ? »
+
+« Pouvez-vous préparer la maison vendredi ? »
+
+Statuts :
+
+Nouvelle
+Vue
+Planifiée
+En cours
+Terminée
+
+Le client reçoit une notification à chaque changement important.
+
+==================================================
+17. CALENDRIER ADMINISTRATEUR
+==================================================
+
+Créer un calendrier comprenant :
+
+- visites
+- interventions artisans
+- arrivées clients
+- départs clients
+- préparations
+- demandes
+- tâches internes
+
+Codes visuels différents selon la catégorie.
+
+==================================================
+18. ARTISANS / PARTENAIRES
+==================================================
+
+Créer une base de données partenaires.
+
+Pour chaque partenaire :
+
+- entreprise
+- métier
+- prénom / contact
+- téléphone
+- email
+- zone géographique
+- notes internes
+- actif / inactif
+
+Métiers exemples :
+
+Plombier
+Électricien
+Chauffagiste
+Paysagiste
+Pisciniste
+Ménage
+Débarras
+Serrurier
+
+==================================================
+19. DOCUMENTS
+==================================================
+
+Créer un espace sécurisé.
+
+Documents possibles :
+
+- contrat Auxois Intendance
+- factures
+- devis
+- factures artisans
+- rapport PDF
+- documents propriété
+- notices
+- diagnostics éventuellement
+
+Permissions :
+certains documents client
+certains documents admin uniquement.
+
+==================================================
+20. RAPPORT PDF
+==================================================
+
+Permettre à l’administrateur ou au client de télécharger un rapport PDF d’une visite.
+
+Exemple :
+
+AUXOIS INTENDANCE
+
+Rapport de visite
+Maison Martin
+8 octobre 2026
+
+État général :
+BON
+
+Checklist
+
+Observations
+
+Photos
+
+Interventions recommandées
+
+Commentaire de l’intendant
+
+==================================================
+21. ABONNEMENTS
+==================================================
+
+Prévoir trois formules.
+
+ESSENTIEL
+69 €/mois
+6 visites/an
+
+SÉRÉNITÉ
+129 €/mois
+12 visites/an
+
+SIGNATURE
+229 €/mois
+24 visites/an
+
+La fréquence doit pouvoir être modifiée manuellement par l’administrateur.
+
+Afficher dans le compte client :
+
+Ma formule
+Date de renouvellement
+Prestations incluses
+
+Ne pas obligatoirement intégrer le paiement automatique dans le MVP mais prévoir l’architecture.
+
+==================================================
+22. NOTIFICATIONS
+==================================================
+
+Créer un système complet de notifications.
+
+Notification client lorsque :
+
+- visite terminée
+- anomalie créée
+- intervention recommandée
+- autorisation nécessaire
+- rendez-vous artisan confirmé
+- intervention terminée
+- demande client traitée
+- prochaine visite prévue
+- préparation de séjour terminée
+
+Notification administrateur lorsque :
+
+- nouvelle demande client
+- autorisation reçue
+- séjour déclaré
+- intervention client refusée
+- nouveau document / message
+
+==================================================
+23. ADMINISTRATION
+==================================================
+
+Créer un écran :
+
+PARAMÈTRES ADMIN
+
+Permettre de gérer :
+
+- utilisateurs
+- clients
+- propriétés
+- formules
+- checklists
+- modèles de notifications
+- artisans
+- catégories de documents
+- paramètres généraux
+- logo
+- coordonnées Auxois Intendance
+
+Prévoir une architecture permettant plus tard :
+
+SUPER ADMIN
+INTENDANT
+ASSISTANT ADMINISTRATIF
+
+avec permissions différentes.
+
+==================================================
+24. STATISTIQUES ADMIN
+==================================================
+
+Créer un dashboard statistiques.
+
+Afficher :
+
+- nombre de propriétés
+- nombre de clients
+- abonnements Essentiel
+- abonnements Sérénité
+- abonnements Signature
+- revenu mensuel récurrent
+- nombre de visites réalisées
+- observations ouvertes
+- interventions ouvertes
+- temps moyen d’une visite
+- nombre de demandes clients
+- nouveaux clients ce mois
+
+==================================================
+25. EXPÉRIENCE UTILISATEUR
+==================================================
+
+L’application doit être extrêmement simple.
+
+Un propriétaire âgé de 65 ans doit pouvoir l’utiliser sans explication.
+
+Éviter :
+- trop de menus
+- trop de texte
+- jargon technique
+- petits boutons
+
+Utiliser :
+- grands boutons
+- statuts clairs
+- icônes
+- photos
+- couleurs simples
+- navigation intuitive
+
+Menu client recommandé :
+
+Accueil
+Ma maison
+Historique
+Interventions
+Demandes
+Documents
+Profil
+
+Menu admin recommandé :
+
+Dashboard
+Planning
+Propriétés
+Clients
+Visites
+Interventions
+Demandes
+Partenaires
+Documents
+Statistiques
+Paramètres
+
+==================================================
+26. ARCHITECTURE TECHNIQUE
+==================================================
+
+Créer une application moderne et sécurisée.
+
+Préférence :
+
+Frontend :
+React / Next.js
+
+UI :
+design responsive mobile-first
+
+Backend :
+Supabase ou équivalent
+
+Base :
+PostgreSQL
+
+Authentification sécurisée
+
+Stockage photos et documents sécurisé
+
+Notifications :
+push + email
+
+Créer des permissions strictes par rôle.
+
+Utiliser Row Level Security si Supabase est utilisé.
+
+Chaque client ne doit pouvoir accéder qu’aux données associées à son user_id.
+
+==================================================
+27. MODÈLE DE DONNÉES
+==================================================
+
+Créer au minimum les tables :
+
+users
+
+clients
+
+properties
+
+property_owners
+
+subscriptions
+
+visits
+
+visit_checklist_items
+
+checklist_templates
+
+observations
+
+observation_photos
+
+interventions
+
+partners
+
+client_requests
+
+stays
+
+documents
+
+notifications
+
+property_notes
+
+activity_logs
+
+Prévoir created_at / updated_at.
+
+Créer les relations correctement.
+
+==================================================
+28. SÉCURITÉ ET RGPD
+==================================================
+
+L’application contient des données sensibles.
+
+Respecter le RGPD.
+
+Prévoir :
+
+- politique de confidentialité
+- consentement
+- suppression / export des données
+- stockage sécurisé
+- logs
+- contrôle d’accès strict
+- URLs signées pour photos/documents privés
+
+Ne jamais exposer publiquement :
+- adresse complète
+- clés
+- codes d’accès
+- informations sensibles sur les propriétés
+
+Les informations liées aux clés et codes doivent être accessibles uniquement aux personnes autorisées côté administrateur.
+
+==================================================
+29. MVP À CRÉER EN PREMIER
+==================================================
+
+Ne pas développer toutes les fonctions avancées immédiatement.
+
+Construire d’abord un MVP fonctionnel comprenant :
+
+1. Authentification
+2. Rôle ADMIN
+3. Rôle CLIENT
+4. Création clients
+5. Création propriétés
+6. Planning visites
+7. Démarrer une visite
+8. Checklist
+9. Photos
+10. Observations
+11. Terminer la visite
+12. Générer le débrief
+13. Notification client
+14. Dashboard client
+15. Historique
+16. Demandes client
+17. « Je viens dans ma maison »
+18. Interventions
+19. Documents
+20. Interface responsive smartphone
+
+Toutes les fonctions doivent fonctionner réellement.
+
+Ne pas créer seulement des maquettes.
+
+==================================================
+30. PHASES FUTURES
+==================================================
+
+Prévoir l’architecture, mais ne pas obligatoirement développer dans le MVP :
+
+- paiement Stripe
+- facturation automatique
+- application native iOS
+- application native Android
+- signature électronique
+- messagerie interne
+- plusieurs intendants
+- planning intelligent
+- optimisation automatique des tournées
+- capteurs connectés température
+- humidité
+- fuite d’eau
+- coupure électrique
+
+Ces futurs capteurs pourront constituer une offre :
+
+AUXOIS CONNECT
+
+==================================================
+31. DONNÉES DE DÉMONSTRATION
+==================================================
+
+Créer des données de démonstration réalistes.
+
+Client :
+Jean Martin
+
+Propriété :
+Maison de Semur
+
+Formule :
+Sérénité
+
+Dernière visite :
+8 octobre 2026 à 10h42
+
+État :
+🟢 Bon
+
+Observation :
+Chasse d’eau WC étage - fuite légère
+
+Action :
+Intervention plombier recommandée
+
+Prochaine visite :
+8 novembre 2026
+
+Créer également quelques visites historiques afin que l’application soit visuellement démonstrative dès son ouverture.
+
+==================================================
+32. OBJECTIF FINAL
+==================================================
+
+Je veux que l’application donne au propriétaire cette sensation :
+
+« Même si je suis à 400 km de ma maison, je sais exactement ce qu’il s’y passe. »
+
+Et côté administrateur :
+
+« Toutes mes maisons, mes visites, mes anomalies et mes interventions sont organisées dans un seul outil. »
+
+L’application doit devenir :
+
+LE CARNET DE SANTÉ NUMÉRIQUE DE LA MAISON
+
+et être le principal avantage concurrentiel d’Auxois Intendance.
+
+Commence par :
+
+1. créer la structure complète de la base de données ;
+2. créer l’authentification et les deux rôles ADMIN / CLIENT ;
+3. créer le dashboard administrateur ;
+4. créer le workflow complet d’une visite ;
+5. créer le dashboard client ;
+6. connecter réellement toutes les données ;
+7. créer les données de démonstration ;
+8. vérifier les permissions et la sécurité ;
+9. optimiser l’interface smartphone ;
+10. seulement ensuite ajouter les fonctionnalités secondaires.
+
+Ne crée pas une simple maquette statique.
+Je veux une application fonctionnelle, exploitable et conçue pour devenir un vrai produit commercial.
