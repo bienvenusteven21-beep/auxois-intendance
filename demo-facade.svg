@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#dfe8e3"/>
+  
+  <rect x="0" y="380" width="800" height="160" fill="#b7c7b0"/>
+  <path d="M120 380 L120 220 L380 100 L640 220 L640 380 Z" fill="#efe9dc" stroke="#cfc4ad" stroke-width="3"/>
+  <path d="M100 230 L380 90 L660 230 L640 250 L380 125 L120 250 Z" fill="#8a6a37"/>
+  <rect x="340" y="280" width="80" height="100" fill="#1f3f31"/>
+  <rect x="170" y="260" width="70" height="70" fill="#9dbcab" stroke="#1f3f31" stroke-width="4"/>
+  <rect x="520" y="260" width="70" height="70" fill="#9dbcab" stroke="#1f3f31" stroke-width="4"/>
+  <rect x="40" y="330" width="60" height="50" fill="#cfc4ad"/><rect x="40" y="330" width="60" height="50" fill="none" stroke="#8a6a37" stroke-width="3"/>
+  <circle cx="700" cy="140" r="40" fill="#f3eadb"/>
+
+  <rect x="0" y="540" width="800" height="60" fill="#1f3f31"/>
+  <text x="24" y="578" font-family="Georgia, serif" font-size="26" fill="#f7f3ea">Façade et portail</text>
+  <text x="776" y="578" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#bf9a5e">Photo de démonstration · Auxois Intendance</text>
+</svg>

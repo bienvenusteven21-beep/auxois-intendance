@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#efe9dc"/>
+  <rect x="0" y="0" width="800" height="540" fill="#efe9dc"/>
+   <rect x="250" y="80" width="300" height="400" rx="18" fill="#f7f3ea" stroke="#cfc4ad" stroke-width="4"/>
+   <circle cx="400" cy="200" r="70" fill="#ffffff" stroke="#22262a" stroke-width="4"/>
+   <path d="M400 200 L430 150" stroke="#b83a3a" stroke-width="5"/><circle cx="400" cy="200" r="6" fill="#22262a"/>
+   <text x="400" y="300" text-anchor="middle" font-family="Helvetica, Arial" font-size="28" fill="#22262a">1,5 bar</text>
+   <rect x="300" y="340" width="200" height="90" rx="8" fill="#dfe8e3"/>
+   <circle cx="340" cy="385" r="12" fill="#2f7a4f"/><circle cx="400" cy="385" r="12" fill="#cfc4ad"/><circle cx="460" cy="385" r="12" fill="#cfc4ad"/>
+   <rect x="380" y="480" width="40" height="60" fill="#8a6a37"/>
+  <rect x="0" y="540" width="800" height="60" fill="#1f3f31"/>
+  <text x="24" y="578" font-family="Georgia, serif" font-size="26" fill="#f7f3ea">Chaudière — pression 1,5 bar</text>
+  <text x="776" y="578" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#bf9a5e">Photo de démonstration · Auxois Intendance</text>
+</svg>

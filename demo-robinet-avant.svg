@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#efe9dc"/>
+  
+   <rect x="0" y="0" width="800" height="540" fill="#efe9dc"/>
+   <rect x="0" y="0" width="800" height="300" fill="#cfc4ad"/>
+   <rect x="0" y="300" width="800" height="240" fill="#a9c4a0"/>
+   <rect x="360" y="100" width="40" height="120" fill="#8a6a37"/>
+   <path d="M380 110 Q470 110 470 200" stroke="#8a6a37" stroke-width="30" fill="none" stroke-linecap="round"/>
+   <circle cx="380" cy="90" r="30" fill="#b83a3a"/>
+   <ellipse cx="470" cy="240" rx="8" ry="14" fill="#3568a5"/><ellipse cx="470" cy="290" rx="8" ry="14" fill="#3568a5"/><ellipse cx="480" cy="330" rx="40" ry="10" fill="#3568a5" opacity="0.5"/>
+
+  <rect x="0" y="540" width="800" height="60" fill="#1f3f31"/>
+  <text x="24" y="578" font-family="Georgia, serif" font-size="26" fill="#f7f3ea">Robinet extérieur avant intervention</text>
+  <text x="776" y="578" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#bf9a5e">Photo de démonstration · Auxois Intendance</text>
+</svg>

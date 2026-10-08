@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#f7f3ea"/>
+  <rect x="0" y="0" width="800" height="540" fill="#f7f3ea"/>
+   <rect x="60" y="300" width="680" height="200" fill="#efe9dc" stroke="#cfc4ad" stroke-width="3"/>
+   <rect x="60" y="290" width="680" height="20" fill="#2b2b2b"/>
+   <rect x="100" y="330" width="120" height="150" fill="#dfe8e3" stroke="#cfc4ad"/><rect x="250" y="330" width="120" height="150" fill="#dfe8e3" stroke="#cfc4ad"/>
+   <rect x="420" y="330" width="120" height="150" fill="#dfe8e3" stroke="#cfc4ad"/><rect x="570" y="330" width="130" height="150" fill="#dfe8e3" stroke="#cfc4ad"/>
+   <rect x="60" y="80" width="300" height="150" fill="#efe9dc" stroke="#cfc4ad" stroke-width="3"/>
+   <rect x="420" y="80" width="320" height="150" fill="#efe9dc" stroke="#cfc4ad" stroke-width="3"/>
+   <rect x="300" y="250" width="200" height="40" fill="#9dbcab"/>
+  <rect x="0" y="540" width="800" height="60" fill="#1f3f31"/>
+  <text x="24" y="578" font-family="Georgia, serif" font-size="26" fill="#f7f3ea">Cuisine</text>
+  <text x="776" y="578" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#bf9a5e">Photo de démonstration · Auxois Intendance</text>
+</svg>

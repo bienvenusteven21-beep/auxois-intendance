@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#f3eadb"/>
+  <rect x="0" y="380" width="800" height="160" fill="#cfc4ad"/>
+   <rect x="0" y="0" width="800" height="380" fill="#f3eadb"/>
+   <rect x="80" y="120" width="180" height="200" fill="#dfe8e3" stroke="#8a6a37" stroke-width="6"/>
+   <rect x="330" y="300" width="340" height="110" rx="20" fill="#1f3f31"/>
+   <rect x="340" y="250" width="320" height="70" rx="16" fill="#2a5340"/>
+   <rect x="560" y="120" width="120" height="180" fill="#8a6a37"/><rect x="600" y="140" width="40" height="60" fill="#c7731c"/>
+   <ellipse cx="300" cy="470" rx="150" ry="30" fill="#bf9a5e" opacity="0.6"/>
+  <rect x="0" y="540" width="800" height="60" fill="#1f3f31"/>
+  <text x="24" y="578" font-family="Georgia, serif" font-size="26" fill="#f7f3ea">Séjour</text>
+  <text x="776" y="578" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#bf9a5e">Photo de démonstration · Auxois Intendance</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#f7f3ea"/>
+  <rect x="0" y="0" width="800" height="540" fill="#f7f3ea"/>
+   <rect x="0" y="380" width="800" height="160" fill="#dfe8e3"/>
+   <rect x="300" y="120" width="200" height="140" rx="16" fill="#ffffff" stroke="#cfc4ad" stroke-width="4"/>
+   <ellipse cx="400" cy="340" rx="130" ry="70" fill="#ffffff" stroke="#cfc4ad" stroke-width="4"/>
+   <rect x="330" y="250" width="140" height="90" fill="#ffffff" stroke="#cfc4ad" stroke-width="4"/>
+   <path d="M470 330 q10 30 0 50 q-10 -20 0 -50" fill="#3568a5"/>
+   <circle cx="560" cy="300" r="36" fill="none" stroke="#c7731c" stroke-width="6"/><text x="560" y="310" text-anchor="middle" font-family="Helvetica" font-size="30" fill="#c7731c">!</text>
+  <rect x="0" y="540" width="800" height="60" fill="#1f3f31"/>
+  <text x="24" y="578" font-family="Georgia, serif" font-size="26" fill="#f7f3ea">Chasse d’eau des WC de l’étage</text>
+  <text x="776" y="578" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#bf9a5e">Photo de démonstration · Auxois Intendance</text>
+</svg>

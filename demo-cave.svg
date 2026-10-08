@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#3b4147"/>
+  <rect x="0" y="0" width="800" height="540" fill="#3b4147"/>
+   <path d="M0 200 Q400 40 800 200 L800 540 L0 540 Z" fill="#5c646c"/>
+   <rect x="0" y="420" width="800" height="120" fill="#2b2b2b"/>
+   <rect x="80" y="260" width="240" height="160" fill="#8a6a37"/><rect x="100" y="280" width="200" height="30" fill="#a67f45"/><rect x="100" y="330" width="200" height="30" fill="#a67f45"/>
+   <rect x="560" y="120" width="120" height="60" fill="#9dbcab" opacity="0.7"/>
+   <rect x="440" y="300" width="80" height="120" rx="8" fill="#f7f3ea"/><text x="480" y="370" text-anchor="middle" font-family="Helvetica" font-size="22" fill="#22262a">62 %</text>
+  <rect x="0" y="540" width="800" height="60" fill="#1f3f31"/>
+  <text x="24" y="578" font-family="Georgia, serif" font-size="26" fill="#f7f3ea">Cave — hygrométrie en baisse</text>
+  <text x="776" y="578" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#bf9a5e">Photo de démonstration · Auxois Intendance</text>
+</svg>
